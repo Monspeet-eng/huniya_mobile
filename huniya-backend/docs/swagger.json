@@ -1,0 +1,122 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Huniya RESTful API Documentation",
+    "description": "API Pencari Kos & Kontrakan Berbasis Lokasi GPS (Haversine) dengan Role-Based Access Control (user & owner).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080/api/v1",
+      "description": "Local Development Server"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Registrasi pengguna baru (user atau owner)",
+        "responses": { "201": { "description": "Created" } }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Login pengguna & dapatkan JWT token",
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/auth/me": {
+      "get": {
+        "tags": ["Auth"],
+        "security": [{ "BearerAuth": [] }],
+        "summary": "Profil pengguna saat ini",
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/properties": {
+      "get": {
+        "tags": ["User - Properties"],
+        "summary": "Cari & filter daftar kos/kontrakan",
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/properties/nearby": {
+      "get": {
+        "tags": ["User - Properties"],
+        "security": [{ "BearerAuth": [] }],
+        "summary": "Cari properti terdekat dengan rumus Haversine (KM)",
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/properties/{id}": {
+      "get": {
+        "tags": ["Properties"],
+        "security": [{ "BearerAuth": [] }],
+        "summary": "Detail lengkap properti beserta kontak WhatsApp pemilik",
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/wishlists": {
+      "get": {
+        "tags": ["User - Wishlist"],
+        "security": [{ "BearerAuth": [] }],
+        "summary": "Daftar properti favorit user",
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/wishlists/{property_id}": {
+      "post": {
+        "tags": ["User - Wishlist"],
+        "security": [{ "BearerAuth": [] }],
+        "summary": "Toggle tambah/hapus properti ke wishlist",
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/owner/properties": {
+      "get": {
+        "tags": ["Owner - Properties"],
+        "security": [{ "BearerAuth": [] }],
+        "summary": "Daftar properti milik owner yang sedang login",
+        "responses": { "200": { "description": "OK" } }
+      },
+      "post": {
+        "tags": ["Owner - Properties"],
+        "security": [{ "BearerAuth": [] }],
+        "summary": "Tambah properti baru (multipart/form-data + multi-image upload)",
+        "responses": { "201": { "description": "Created" } }
+      }
+    },
+    "/owner/properties/{id}": {
+      "put": {
+        "tags": ["Owner - Properties"],
+        "security": [{ "BearerAuth": [] }],
+        "summary": "Update data properti milik owner",
+        "responses": { "200": { "description": "OK" } }
+      },
+      "delete": {
+        "tags": ["Owner - Properties"],
+        "security": [{ "BearerAuth": [] }],
+        "summary": "Hapus listing properti milik owner",
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/owner/properties/{id}/availability": {
+      "patch": {
+        "tags": ["Owner - Properties"],
+        "security": [{ "BearerAuth": [] }],
+        "summary": "Update cepat status ketersediaan & jumlah kamar kosong",
+        "responses": { "200": { "description": "OK" } }
+      }
+    }
+  }
+}
