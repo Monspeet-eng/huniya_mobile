@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDisplayName</key>
+	<string>Huniya</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Huniya memerlukan akses lokasi GPS Anda untuk menampilkan kos dan kontrakan terdekat secara akurat.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Huniya memerlukan akses lokasi untuk mencari properti di sekitar Anda.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Huniya memerlukan akses galeri foto untuk mengunggah foto properti kos/kontrakan.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Huniya memerlukan akses kamera untuk mengambil foto properti kos/kontrakan.</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>https</string>
+		<string>whatsapp</string>
+		<string>comgooglemaps</string>
+	</array>
+</dict>
+</plist>
